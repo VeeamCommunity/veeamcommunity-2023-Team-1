@@ -105,7 +105,7 @@ func GenerateBlueprint(name string, actions []string, configMapNames, containerN
 
 	if contains(actions, "backup") {
 		backupAction := Action{
-			SecretNames: []string{"cockroachSecret"},
+			SecretNames: []string{"Secret"},
 			OutputArtifacts: OutputArtifacts{
 				CockroachDBCloudDump: struct {
 					KeyValue struct {
@@ -115,7 +115,7 @@ func GenerateBlueprint(name string, actions []string, configMapNames, containerN
 					KeyValue: struct {
 						S3Path string `yaml:"s3path"`
 					}{
-						S3Path: "/cockroachdb-backups/{{ .StatefulSet.Namespace }}/{{ index .Object.metadata.labels \"app.kubernetes.io/instance\" }}/{{ toDate \"2006-01-02T15:04:05.999999999Z07:00\" .Time  | date \"2006-01-02T15-04-05\" }}",
+						S3Path: "/path/{{ .StatefulSet.Namespace }}/{{ index .Object.metadata.labels \"app.kubernetes.io/instance\" }}/{{ toDate \"2006-01-02T15:04:05.999999999Z07:00\" .Time  | date \"2006-01-02T15-04-05\" }}",
 					},
 				},
 			},
@@ -141,7 +141,7 @@ func GenerateBlueprint(name string, actions []string, configMapNames, containerN
 						Command     []string   `yaml:"command"`
 					}{
 						Namespace:   "YourNamespace",
-						Image:       "cockroachdb/cockroach",
+						Image:       "latest/image",
 						PodOverride: struct{}{},
 						Volumes:     []struct{}{},
 						Command:     []string{backupCommand},
@@ -155,7 +155,7 @@ func GenerateBlueprint(name string, actions []string, configMapNames, containerN
 
 	if contains(actions, "restore") {
 		restoreAction := Action{
-			InputArtifactNames: []string{"cockroachDBCloudDump"},
+			InputArtifactNames: []string{"database"},
 			Phases: []struct {
 				Func string `yaml:"func"`
 				Name string `yaml:"name"`
@@ -178,7 +178,7 @@ func GenerateBlueprint(name string, actions []string, configMapNames, containerN
 						Command     []string   `yaml:"command"`
 					}{
 						Namespace:   "YourNamespace",
-						Image:       "cockroachdb/cockroach",
+						Image:       "latest/image",
 						PodOverride: struct{}{},
 						Volumes:     []struct{}{},
 						Command:     []string{restoreCommand},
