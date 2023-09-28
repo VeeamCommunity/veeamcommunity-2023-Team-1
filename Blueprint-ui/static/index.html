@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanister Blueprint Editor</title>
+    <link id="theme" rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Kanister Blueprint Editor</h1>
+    <form id="blueprintForm">
+        <label for="name">Blueprint Name:</label>
+        <input type="text" id="name" name="name" value="my-blueprint"><br><br>
+        <label>Actions:</label><br>
+        <input type="checkbox" id="backup" name="actions" value="backup">
+        <label for="backup">Backup</label><br>
+        <input type="checkbox" id="restore" name="actions" value="restore">
+        <label for="restore">Restore</label><br>
+        <input type="checkbox" id="delete" name="actions" value="delete">
+        <label for="delete">Delete</label><br><br>
+        <label for="configMapNames">ConfigMap Names:</label>
+        <input type="text" id="configMapNames" name="configMapNames" value="location"><br><br>
+        <label for="secretNames">Secret Names:</label>
+        <input type="text" id="secretNames" name="secretNames" value="aws postgres"><br><br>
+        <label for="outputArtifacts">Output Artifacts:</label>
+        <input type="text" id="outputArtifacts" name="outputArtifacts" value="cloudObject keyValue path"><br><br>
+        <label for="phases">Phases:</label>
+        <input type="text" id="phases" name="phases" value="KubeTask takeBackup"><br><br>
+        <label for="containerName">Container Name:</label>
+        <input type="text" id="containerName" name="containerName" value="test-container"><br><br>
+        <label for="backupCommand">Backup Command:</label>
+        <input type="text" id="backupCommand" name="backupCommand" value="sh -c 'AWS_ACCESS_KEY_ID={{ .Secrets.aws.Data.aws_access_key_id | toString }} ...'"><br><br>
+        <label for="restoreCommand">Restore Command:</label>
+        <input type="text" id="restoreCommand" name="restoreCommand" value="sh -c 'AWS_ACCESS_KEY_ID={{ .Secrets.aws.Data.aws_secret_access_key | toString }} ...'"><br><br>
+        <label for="namespace">Namespace:</label>
+        <input type="text" id="namespace" name="namespace" value="your-namespace"><br><br>
+        <button type="button" id="generateButton">Generate Blueprint</button>
+    </form>
+    <h2>Generated Blueprint</h2>
+    <pre id="generatedBlueprint"></pre>
+    <button id="toggleThemeButton">Toggle Dark Mode</button>
+    <script src="script.js"></script>
+</body>
+</html>
