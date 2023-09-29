@@ -7,10 +7,13 @@ function toggleTheme() {
 
   if (themeLink.getAttribute("href") === "style.css") {
     themeLink.setAttribute("href", "darkmode.css"); 
-  } else {
-    themeLink.setAttribute("href", "lightmode.css"); 
+  } else{
+    themeLink.setAttribute("href", "style.css"); 
   }
 }
+//else if(themeLink.getAttribute("href") === "darkmode.css"){
+  //themeLink.setAttribute("href", "lightmode.css"); 
+//} 
 
 
 toggleThemeButton.addEventListener("click", toggleTheme);

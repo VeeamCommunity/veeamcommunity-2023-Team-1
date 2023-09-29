@@ -21,6 +21,7 @@ form {
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.5s, box-shadow 0.5s;
+    
 }
 
 label {
@@ -31,16 +32,25 @@ label {
 
 input[type="text"],
 input[type="checkbox"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 8px;
     font-size: 16px;
+}
+input[type="text"]:focus{
+    border-color: #6EA2DE;
+    box-shadow: 0px 0px 10px #6EA2DE;
 }
 
 input[type="checkbox"] {
     margin-right: 5px;
+    border-radius: 50%;
+}
+input[type="checkbox"]:hover{
+    cursor: pointer;
+    
 }
 
 body.dark-mode {
@@ -62,9 +72,11 @@ input[type="checkbox"].dark-mode {
     background-color: #555; 
     color: #ddd;
     border: 1px solid #777; 
+    
+    
 }
 
-#toggleThemeButton {
+#toggleThemeButton{
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -79,3 +91,18 @@ input[type="checkbox"].dark-mode {
 #toggleThemeButton:hover {
     background-color: #0056b3;
 }
+
+#generateButton{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+#generateButton:hover {
+    background-color: #0056b3;
+}
+
+

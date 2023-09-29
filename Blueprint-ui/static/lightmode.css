@@ -31,7 +31,7 @@ label {
 
 input[type="text"],
 input[type="checkbox"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -43,7 +43,7 @@ input[type="checkbox"] {
     margin-right: 5px;
 }
 
-#generateButton {
+#toggleThemeButton {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -55,6 +55,19 @@ input[type="checkbox"] {
     right: 20px;
 }
 
+#toggleThemeButton:hover {
+    background-color: #0056b3;
+}
+
+#generateButton{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
 #generateButton:hover {
     background-color: #0056b3;
 }
