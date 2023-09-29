@@ -12,6 +12,11 @@ On windows you need to run the following to set the KUBECONFIG
 
 `$env:KUBECONFIG = "C:\Users\micha\.kube\config"`
 
+You can confirm this in Windows with the following command:
+
+`[System.Environment]::GetEnvironmentVariable('KUBECONFIG')`
+
+
 ## Currently working on: 
 
 messing around with creating a dockerfile now 
