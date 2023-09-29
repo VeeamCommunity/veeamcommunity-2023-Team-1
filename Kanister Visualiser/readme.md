@@ -8,6 +8,9 @@ Overall, the Kanister Visualiser empowers users to monitor and manage their Kani
 
 ## Getting Started 
 
+There are a few ways to deploy the Kanister Visualiser, locally, Docker (needs more testing) and Kubernetes 
+## Running Local
+
 On windows you need to run the following to set the KUBECONFIG 
 
 `$env:KUBECONFIG = "C:\Users\micha\.kube\config"`
@@ -16,19 +19,6 @@ You can confirm this in Windows with the following command:
 
 `[System.Environment]::GetEnvironmentVariable('KUBECONFIG')`
 
-
-## Currently working on: 
-
-messing around with creating a dockerfile now 
-
-```
-docker run -e KUBECONFIG=/path/to/your/kubeconfig.yaml -p 8080:8080 golang-kanister-app:local
-
-docker run -e KUBECONFIG="C:\Users\micha\.kube\config" -p 8080:8080 golang-kanister-app:local
-
-docker run -v c:\users\micha\.kube\ -v c:\users\micha\.kube\config -e KUBECONFIG=c:\users\micha\.kube\config -p 8080:8080 golang-kanister-app:local
-```
-
 To run you should download the source files and use go on your local system to run/build 
 
 ```
@@ -36,6 +26,36 @@ go run main.go
 ```
 
 the above command will start the web server on http://localhost:8080/ navigate here and providing you have a KUBECONFIG and valid Kubernetes cluster you will be able to at least see the building blocks of the application, to see the value of the visualiser you will need to continue with the deployment of Kanister and custom resources. 
+
+## Running in Kubernetes 
+
+Using the local mode will use the local machine KUBECONFIG, where as if we use Kubernetes we will use the in cluster `config, err = rest.InClusterConfig()` which is defined in our Go code. 
+
+In the repository you will find a folder called Kubernetes, this consists of our files we need to run our application within the cluster. 
+
+To deploy you will need a Kubernetes cluster, the service also assumes LoadBalancer capabilities apply although will share the port forward command later. 
+
+```
+cd kubernetes 
+kubectl create -f . -n kanister 
+```
+
+We are deploying our application into the Kanister namespace if you have not deployed Kanister yet then follow the next steps. Or at least create the namespace with `kubectl create namespace kanister`
+
+If you have a load balancer then you could use `kubectl get svc -n kanister` to find out the forward facing IP to connect to your instance. 
+
+If you do not have a load balancer then you should first determine your pod name with `kubectl get pods -n kanister`
+
+Then we can use a port forward command like 
+
+```
+kubectl port-forward pod/kanister-visualiser-7b54d48f84-4rqh7 8080:8080 -n kanister
+```
+
+## Running with Docker 
+
+I have not had chance to test here but this would require that we have a KUBECONFIG access to your Kubernetes cluster, if someone can test this then that would be great. 
+
 
 ## Deploy Kanister to your Kubernetes cluster 
 
