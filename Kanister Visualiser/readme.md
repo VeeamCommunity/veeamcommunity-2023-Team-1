@@ -107,26 +107,16 @@ kubectl create -f https://raw.githubusercontent.com/kanisterio/kanister/master/e
 kanctl create actionset --action backup --namespace kanister --blueprint mysql-blueprint --statefulset mysql-test/mysql-release --profile kanister/s3-profile-72pvq --secrets mysql=mysql-test/mysql-release
 ```
 
-```
-## Deleting Blueprints 
+## Clearing things up
 
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/csi-snapshot/csi-snapshot-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/postgresql/postgres-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/mysql/mysql-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/elasticsearch/elasticsearch-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/aws-rds/aurora-mysql/rds-aurora-snap-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/aws-rds/postgresql/rds-postgres-dump-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/aws-rds/postgresql/rds-postgres-snap-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/cassandra/cassandra-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/cockroachdb/cockroachdb-blueprint.yaml -n kanister 
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/couchbase/couchbase-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/etcd/etcd-in-cluster/k8s/etcd-incluster-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/foundationdb/foundationdb-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/k8ssandra/k8ssandra-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/kafka/adobe-s3-connector/kafka-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/maria/maria-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/mongodb/mongo-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/mssql/mssql-blueprint.yaml -n kanister
-kubectl delete -f https://raw.githubusercontent.com/kanisterio/kanister/master/examples/redis/redis-blueprint.yaml -n kanister
+If you are not running this in a lab or production and you would like to test functionality, you may have the requirement to reset and clear things up. You can do this with the following 3 commands within your Kubernetes cluster. 
 
 ```
+kubectl delete actionsets.cr.kanister.io --all -n kanister
+kubectl delete blueprints.cr.kanister.io --all -n kanister
+kubectl delete profiles.cr.kanister.io --all -n kanister 
+```
+
+This will leave Kanister still running in your cluster, if you have sent data to your object storage locations then there will be data there also. Deleting the ActionSet does not remove the data. 
+
+
