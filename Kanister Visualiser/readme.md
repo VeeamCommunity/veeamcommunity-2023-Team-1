@@ -1,4 +1,12 @@
-# Getting Started 
+# Kanister Visualiser 
+
+The Kanister Visualiser is a user-friendly web application designed to provide a clear and intuitive overview of Kanister's critical components within a Kubernetes cluster. With its sleek and stylish interface, it offers instant insights into Kanister Profiles, Blueprints, and ActionSets. Users can easily identify and explore various Kanister Profiles, including their types and associated cloud storage buckets, thanks to the app's organised display. Furthermore, the visualiser showcases Kanister Blueprints, allowing users to view and comprehend each blueprint's purpose and parameters. 
+
+Perhaps most importantly, the ActionSets section presents a real-time view of ongoing operations, including names, namespaces, and status updates. The app's dark mode feature enhances user experience, and it also provides quick links to Kanister's GitHub repository, website, documentation, and Slack community. 
+
+Overall, the Kanister Visualiser empowers users to monitor and manage their Kanister-based data protection workflows with elegance and ease.
+
+## Getting Started 
 
 On windows you need to run the following to set the KUBECONFIG 
 
