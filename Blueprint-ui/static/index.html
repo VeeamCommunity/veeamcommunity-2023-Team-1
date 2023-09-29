@@ -21,22 +21,21 @@
         <label for="restore">Restore</label><br>
         <input type="checkbox" id="delete" name="actions" value="delete">
         <label for="delete">Delete</label><br><br>
-        <label for="configMapNames">ConfigMap Names:</label>
-        <input type="text" id="configMapNames" name="configMapNames" value="location"><br><br>
-        <label for="secretNames">Secret Names:</label>
-        <input type="text" id="secretNames" name="secretNames" value="aws postgres"><br><br>
-        <label for="outputArtifacts">Output Artifacts:</label>
-        <input type="text" id="outputArtifacts" name="outputArtifacts" value="cloudObject keyValue path"><br><br>
-        <label for="phases">Phases:</label>
-        <input type="text" id="phases" name="phases" value="KubeTask takeBackup"><br><br>
-        <label for="containerName">Container Name:</label>
-        <input type="text" id="containerName" name="containerName" value="test-container"><br><br>
-        <label for="backupCommand">Backup Command:</label>
-        <input type="text" id="backupCommand" name="backupCommand" value="sh -c 'AWS_ACCESS_KEY_ID={{ .Secrets.aws.Data.aws_access_key_id | toString }} ...'"><br><br>
-        <label for="restoreCommand">Restore Command:</label>
-        <input type="text" id="restoreCommand" name="restoreCommand" value="sh -c 'AWS_ACCESS_KEY_ID={{ .Secrets.aws.Data.aws_secret_access_key | toString }} ...'"><br><br>
+        <label for="backupOutputPath">Backup Output Path:</label>
+        <input type="text" id="backupOutputPath" name="backupOutputPath"
+            value="cloudObject keyValue path"><br><br>
         <label for="namespace">Namespace:</label>
-        <input type="text" id="namespace" name="namespace" value="your-namespace"><br><br>
+        <input type="text" id="namespace" name="namespace" value="{{ .StatefulSet.Namespace }}"><br><br>
+        <label for="containerName">Container Name:</label>
+        <input type="text" id="containerName" name="containerName" value="{{ .StatefulSet.Name }}"><br><br>
+        <label for="image">Image (Optional):</label>
+        <input type="text" id="image" name="image" placeholder="Leave blank for default image"><br><br>
+        <label for="backupCommand">Backup Command:</label>
+        <input type="text" id="backupCommand" name="backupCommand"
+            value="sh -c 'AWS_ACCESS_KEY_ID={{ .Secrets.aws.Data.aws_access_key_id | toString }} ...'"><br><br>
+        <label for="restoreCommand">Restore Command:</label>
+        <input type="text" id="restoreCommand" name="restoreCommand"
+            value="sh -c 'AWS_ACCESS_KEY_ID={{ .Secrets.aws.Data.aws_secret_access_key | toString }} ...'"><br><br>
         <button type="button" id="generateButton">Generate Blueprint</button>
     </form>
 

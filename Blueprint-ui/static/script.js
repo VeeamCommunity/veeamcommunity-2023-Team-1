@@ -23,8 +23,10 @@ document.getElementById("generateButton").addEventListener("click", function () 
   const blueprintData = {
     name: document.getElementById("name").value,
     actions: [], 
-    configMapNames: document.getElementById("configMapNames").value,
+    backupOutputPath: document.getElementById("backupOutputPath").value,
+    namespace: document.getElementById("namespace").value,
     containerName: document.getElementById("containerName").value,
+    image: document.getElementById("image").value,
     backupCommand: document.getElementById("backupCommand").value,
     restoreCommand: document.getElementById("restoreCommand").value
   };
@@ -51,12 +53,7 @@ document.getElementById("generateButton").addEventListener("click", function () 
   })
   .then((data) => {
     console.log("Response Data:", data);
-    const generatedBlueprint = data.blueprintYAML
-      .replace("YourNamespace", document.getElementById("namespace").value)
-      .replace("YourBackupCommandHere", document.getElementById("backupCommand").value)
-      .replace("YourRestoreCommandHere", document.getElementById("restoreCommand").value);
-
-    document.getElementById("generatedBlueprint").innerText = generatedBlueprint;
+      document.getElementById("generatedBlueprint").innerText = data.blueprintYAML;
   })
   .catch((error) => {
     console.error("Error:", error);
