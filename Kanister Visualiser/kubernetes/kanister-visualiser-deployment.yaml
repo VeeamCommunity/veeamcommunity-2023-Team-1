@@ -15,7 +15,7 @@ spec:
       serviceAccountName: kanister-visualiser-sa
       containers:
         - name: kanister-visualiser
-          image: michaelcade1/kanister-visualiser:0.0.3
+          image: michaelcade1/kanister-visualiser:0.0.4
           ports:
             - containerPort: 8080
           resources:
