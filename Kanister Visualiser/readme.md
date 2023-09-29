@@ -57,6 +57,18 @@ kubectl port-forward pod/kanister-visualiser-7b54d48f84-4rqh7 8080:8080 -n kanis
 I have not had chance to test here but this would require that we have a KUBECONFIG access to your Kubernetes cluster, if someone can test this then that would be great. 
 
 
+## Building Docker Container 
+
+You will notice there is a Dockerfile in the repository as well, this is for us to create the docker container to use in either docker or kubernetes if you want to build your own docker container instead of the one I created then you can do this by running the following commands with your own username and tag (this is just an example)
+
+
+```
+docker build -t michaelcade1/kanister-visualiser:0.0.3 .
+docker push michaelcade1/kanister-visualiser:0.0.3  
+```
+
+Maybe in the future we can build a more automated way of building these images. 
+
 ## Deploy Kanister to your Kubernetes cluster 
 
 `helm repo add kanister https://charts.kanister.io/`
