@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kanister-visualiser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kanister-visualiser
+  template:
+    metadata:
+      labels:
+        app: kanister-visualiser
+    spec:
+      serviceAccountName: kanister-visualiser-sa
+      containers:
+        - name: kanister-visualiser
+          image: michaelcade1/kanister-visualiser:0.0.3
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "512Mi" # Maximum of 512 MiB of memory
+            requests:
+              cpu: "0.1" # Initial request of 0.1 CPU cores
+              memory: "256Mi" # Initial request of 256 MiB of memory
