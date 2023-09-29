@@ -67,7 +67,6 @@
             margin-top: 20px;
         }
 
-
 		body {
 			font-family: "Helvetica Neue", sans-serif; /* Change "Arial" to your desired font family */
 		}
@@ -128,12 +127,87 @@
             text-decoration: none;
             color: #333;
         }
+        /* Style the "About this project" button */
+        button {
+            background-color: #333; /* Dark background color */
+            color: #fff; /* Light text color */
+            border: none; /* Remove border */
+            padding: 10px 15px; /* Add padding to the button */
+            font-size: 16px; /* Increase font size */
+            cursor: pointer; /* Change cursor on hover */
+            border-radius: 5px; /* Add rounded corners */
+        }
+
+        .about-button {
+            position: absolute;
+            top: 10px; 
+            left: 10px; 
+        }
+
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Style the pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Style the pop-up content */
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff; /* White background for the popup */
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Box shadow for the popup */
+        }
+
+        /* Text styles for the popup content */
+        .popup-content p {
+            color: #333; /* Text color for the popup content */
+
+        }
+            
+        /* Style the close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333; /* Text color for the close button */
+        }
+
+
     </style>
 </head>
 <body>
     <h1>Kanister Visualiser</h1>
 	<button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 	<img class="kanister-logo" src="/static/kanister_logo.png" alt="Kanister Logo">
+
+        <!-- "About this project" button and pop-up -->
+    <button class="about-button" onclick="showAbout()">About this project</button>
+    <div id="aboutPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeAbout()">&times;</span>
+            <!-- Your project description here -->
+            <p>The Kanister Visualiser is a user-friendly web application...</p>
+        </div>
+    </div>
 
     <!-- Social buttons -->
 	<div class="social-buttons">
@@ -255,6 +329,18 @@
             const body = document.body;
             body.classList.toggle("dark-mode");
         }
+
+       // Show the pop-up
+       function showAbout() {
+            var popup = document.getElementById("aboutPopup");
+            popup.style.display = "block";
+        }
+
+        // Close the pop-up
+        function closeAbout() {
+            var popup = document.getElementById("aboutPopup");
+            popup.style.display = "none";
+        }    
     </script>
 </body>
 </html>
