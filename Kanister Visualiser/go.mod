@@ -3,7 +3,7 @@ module golang-kanister-app
 go 1.20
 
 require (
-	github.com/kanisterio/kanister v0.0.0-20230926202220-eb892498a2f9
+	github.com/kanisterio/kanister/v9 v9.99.9-sirish3
 	k8s.io/apimachinery v0.28.2
 	k8s.io/client-go v0.28.2
 )
