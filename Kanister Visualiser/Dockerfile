@@ -1,5 +1,5 @@
 # Use an official Golang runtime as the base image for the build stage
-FROM golang:1.21 AS build
+FROM golang:1.22 AS build
 
 # Set the working directory in the container
 WORKDIR /go/src/app
