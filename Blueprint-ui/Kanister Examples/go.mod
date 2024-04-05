@@ -1,6 +1,6 @@
 module blueprintexamples
 
-go 1.21.1
+go 1.22.2
 
 require (
 	github.com/google/go-github/v37 v37.0.0
